@@ -23,26 +23,28 @@
     </div>
     <div class="game-area">
         <div class="controls-area">
-            <button class="btn btn--big btn--green" id="plus"><i class="fas fa-plus"></i>Addition</button>
-            <button class="btn btn--big btn--blue" id="minus"><i class="fas fa-minus"></i>Subtract</button>
-            <button class="btn btn--big btn--orange" id="times"><i class="fas fa-times"></i>Multiply</button>
-            <button class="btn btn--big btn--red" id="divide"><i class="fas fa-divide"></i>Division</button>
+            <button data-type="addition" class="btn btn--big btn--green" id="plus"><i class="fas fa-plus"></i>Addition</button>
+            <button data-type="subtraction" class="btn btn--big btn--blue" id="minus"><i class="fas fa-minus"></i>Subtract</button>
+            <button data-type="multiplication" class="btn btn--big btn--orange" id="times"><i class="fas fa-times"></i>Multiply</button>
+            <button data-type="division" class="btn btn--big btn--red" id="divide"><i class="fas fa-divide"></i>Division</button>
         </div>    
-    </div>
-    <div class="question-area">
-        <span id="operand1">0</span>
-        <span id="operator">x</span>
-        <span id="operand2">0</span>
-        <span>=</span>
-        <p class="answer-message">Enter Answer:</p>
-        <input id="answer-box" type="number">
+    
+        <div class="question-area">
+            <span id="operand1">0</span>
+            <span id="operator">x</span>
+            <span id="operand2">0</span>
+            <span>=</span>
+            <p class="answer-message">Enter Answer:</p>
+            <input id="answer-box" type="number">
+        </div>
+        <button data-type="submit" class="btn btn--gray"></button>
     </div>
 
     <div class="score-area">
         <p class="scores">Correct Answer: <span id="score">0</span></p>
         <p class="scores">Incorrect Answers: <span id="incorrect">0</span></p>
     </div>
-    
+
     <script src="assets/js/script.js"></script>
 </body>
 </html>
