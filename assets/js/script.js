@@ -54,7 +54,7 @@ function checkAnswer() {
         incrementWrongAnswer();
     }
 
-    runGame(calculatedAnswer[1]);
+    
 }
 
 function calculateCorrectAnswer() {
@@ -69,6 +69,8 @@ function calculateCorrectAnswer() {
         return [operand1 - operand2, "subtract"];
     } else if (operator === "x") {
         return [operand1 * operand2, "multiply"];
+    } else if (operator === "/") {
+        return [operand1 / operand2, "division"];
     } else {
         alert(`Unimplemented operator ${operator}`);
         throw `Unimplemented operator ${operator}. Aborting!`;
@@ -78,12 +80,13 @@ function calculateCorrectAnswer() {
 
 function incrementScore() {
     
-    let score = parseInt(document.getElementById('score').innerText);
+    let score = parseInt(document.querySelector('span #score').innerText);
     document.getElementById('score').innerText = ++score;
     
 }
 
 function incrementWrongAnswer() {
+    
     let score = parseInt(document.getElementById('incorrect').innerText);
     document.getElementById('incorrect').innerText = ++score;
 
@@ -97,13 +100,22 @@ function displayAdditionQuestion(operand1, operand2) {
     
 }
 
-function displaySubtractQuestion() {
+function displaySubtractQuestion(operand1, operand2) {
+    document.getElementById('operand1').textContent = operand1 > operand2 ? operand1 : operand2;
+    document.getElementById('operand2').textContent = operand1 > operand2 ? operand2 : operand1; 
+    document.getElementById('operator').textContent = "-";
 
 } 
 
-function displayMultiplyQuestion() {
+function displayMultiplyQuestion(operand1, operand2) {
     document.getElementById('operand1').textContent = operand1;
     document.getElementById('operand2').textContent = operand2;
     document.getElementById('operator').textContent = "x";
 }
 
+function displayDivisionQuestion(operand1, operand2) {
+
+    document.getElementById('operand1').textContent = num1;
+    document.getElementById('operand2').textContent = num2;
+    document.getElementById('operator').textContent = "/";
+}
