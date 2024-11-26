@@ -13,6 +13,14 @@ document.addEventListener("DOMContentLoaded", function() {
             }
         })
     }
+
+    document.getElementById('answer-box').addEventListener('keydown', function(event) {
+        if (event.key === "Enter") {
+            checkAnswer();
+        }
+    })
+
+    runGame("addition")
 })
 
 /**
@@ -21,10 +29,12 @@ document.addEventListener("DOMContentLoaded", function() {
  */
 
 function runGame(gameType) {
+    document.getElementById('answer-box').value = "";
+    document.getElementById('answer-box').focus();
 
     //  Creates two random numbers between 1 and 25
-    let num1 = Math.floor(Math.random() * 25) + 1;
-    let num2 = Math.floor(Math.random() * 25) + 1;
+    let num1 = Math.ceil(Math.random() * 25);
+    let num2 = Math.ceil(Math.random() * 25);
 
     if (gameType === "addition") {
         displayAdditionQuestion(num1, num2);
@@ -44,7 +54,7 @@ function checkAnswer() {
 
     let userAnswer = parseInt(document.getElementById('answer-box').value);
     let calculatedAnswer = calculateCorrectAnswer();
-    let isCorrect = userAnswer === calculatedAnswer[0];
+    let isCorrect = userAnswer === roundNumbers(calculatedAnswer[0], 5);
 
     if (isCorrect) {
         alert('Hey! You got it right! :D');
@@ -54,14 +64,15 @@ function checkAnswer() {
         incrementWrongAnswer();
     }
 
-    
+    runGame(calculatedAnswer[1]);
 }
 
 function calculateCorrectAnswer() {
     
-    let operand1 = parseint(document.getElementById('operand1').innerText);
-    let operand2 = parseint(document.getElementById('operand1').innerText);
+    let operand1 = parseInt(document.getElementById('operand1').innerText);
+    let operand2 = parseInt(document.getElementById('operand2').innerText);
     let operator = document.getElementById('operator').innerText;
+    
 
     if (operator === "+") {
         return [operand1 + operand2, "addition"];
@@ -80,7 +91,7 @@ function calculateCorrectAnswer() {
 
 function incrementScore() {
     
-    let score = parseInt(document.querySelector('span #score').innerText);
+    let score = parseInt(document.getElementById('score').innerText);
     document.getElementById('score').innerText = ++score;
     
 }
@@ -115,7 +126,18 @@ function displayMultiplyQuestion(operand1, operand2) {
 
 function displayDivisionQuestion(operand1, operand2) {
 
-    document.getElementById('operand1').textContent = num1;
-    document.getElementById('operand2').textContent = num2;
+    document.getElementById('operand1').textContent = operand1;
+    document.getElementById('operand2').textContent = operand2;
     document.getElementById('operator').textContent = "/";
+}
+
+function roundNumbers(calculatedAnswer, sigFigs) {
+    
+    if (num === 0) return 0;
+    const d = Math.ceil(Math.log10(num < 0 ? -num : num));
+    const power = sigFigs - d;
+    const magnitude = Math.pow(10, power);
+    const shifted = Math.round(num * magnitude);
+    return shifted / magnitude;
+
 }

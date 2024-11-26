@@ -55,6 +55,10 @@ body {
     margin: 30px auto;
 }
 
+#grid {
+    grid-gap: 40px;
+}
+
 #score {
     color: green;
     font-weight: bold;
